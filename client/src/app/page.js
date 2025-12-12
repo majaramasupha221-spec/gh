@@ -94,34 +94,37 @@ export default function Home() {
           )}
         </header>
 
-        {/* Add Task Card */}
-        <div className="bg-white/10 backdrop-blur-xl rounded-2xl sm:rounded-3xl shadow-2xl overflow-hidden mb-4 sm:mb-8 border border-white/20">
-          <div className="p-4 sm:p-6 md:p-8">
-            <form onSubmit={handleAddTodo} className="flex flex-col sm:flex-row gap-3 sm:gap-4">
-              <div className="flex-1 relative">
-                <input
-                  type="text"
-                  value={newTodo}
-                  onChange={(e) => setNewTodo(e.target.value)}
-                  placeholder="What's on your mind?"
-                  className="w-full px-4 sm:px-6 py-3.5 sm:py-4 rounded-xl sm:rounded-2xl border-0 bg-white/90 text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-4 focus:ring-white/50 text-base sm:text-lg font-medium shadow-lg transition-all"
-                />
-              </div>
-              <button
-                type="submit"
-                className="w-full sm:w-auto px-6 sm:px-8 py-3.5 sm:py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold rounded-xl sm:rounded-2xl hover:from-purple-700 hover:to-pink-700 transition-all shadow-xl hover:shadow-2xl active:scale-95 flex items-center justify-center gap-2 text-base sm:text-lg min-h-[48px] sm:min-h-[56px]"
-              >
-                <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
-                </svg>
-                <span className="sm:inline">Add Task</span>
-              </button>
-            </form>
+        {/* Add Task Section - Fixed Bottom on Mobile, Card on Desktop */}
+        <div className="fixed bottom-0 left-0 right-0 p-3 pb-6 bg-white/20 backdrop-blur-2xl border-t border-white/20 z-50 md:static md:bg-transparent md:backdrop-blur-none md:border-0 md:p-0 md:z-auto md:mb-8">
+          <div className="md:bg-white/10 md:backdrop-blur-xl md:rounded-3xl md:shadow-2xl md:overflow-hidden md:border md:border-white/20">
+            <div className="md:p-8">
+              <form onSubmit={handleAddTodo} className="flex gap-3 max-w-4xl mx-auto md:max-w-none">
+                <div className="flex-1 relative">
+                  <input
+                    type="text"
+                    value={newTodo}
+                    onChange={(e) => setNewTodo(e.target.value)}
+                    placeholder="Add a new task..."
+                    className="w-full px-4 py-3 md:px-6 md:py-4 rounded-xl md:rounded-2xl border-0 bg-white/90 text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 md:focus:ring-white/50 text-base md:text-lg font-medium shadow-lg transition-all"
+                  />
+                </div>
+                <button
+                  type="submit"
+                  disabled={!newTodo.trim()}
+                  className="px-4 py-3 md:px-8 md:py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold rounded-xl md:rounded-2xl hover:from-purple-700 hover:to-pink-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-xl hover:shadow-2xl active:scale-95 flex items-center justify-center gap-2 aspect-square md:aspect-auto"
+                >
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+                  </svg>
+                  <span className="hidden md:inline text-lg">Add Task</span>
+                </button>
+              </form>
+            </div>
           </div>
         </div>
 
-        {/* Tasks List */}
-        <div className="space-y-2.5 sm:space-y-3">
+        {/* Tasks List - Added padding bottom for mobile bar */}
+        <div className="space-y-3 pb-24 md:pb-0">
           {loading ? (
             <div className="text-center py-16 sm:py-20">
               <div className="inline-block animate-spin rounded-full h-10 w-10 sm:h-12 sm:w-12 border-4 border-white border-t-transparent"></div>
