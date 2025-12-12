@@ -27,12 +27,12 @@ export default function TodoItem({ todo, onUpdate, onDelete }) {
     };
 
     return (
-        <div className={`group relative bg-white/95 backdrop-blur-sm rounded-xl sm:rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 overflow-hidden ${todo.completed ? 'opacity-75' : ''
+        <div className={`group relative bg-white/95 backdrop-blur-sm rounded-xl sm:rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-[#2A428C]/10 overflow-hidden ${todo.completed ? 'opacity-75 bg-slate-50' : ''
             }`}>
             {/* Colored accent bar */}
             <div className={`absolute left-0 top-0 bottom-0 w-1 sm:w-1.5 transition-all duration-300 ${todo.completed
-                    ? 'bg-gradient-to-b from-green-400 to-emerald-500'
-                    : 'bg-gradient-to-b from-purple-500 to-pink-500'
+                    ? 'bg-[#10B981]' // Green for completed
+                    : 'bg-[#FFEF4D]' // Sandy Yellow for active
                 }`}></div>
 
             <div className="flex items-center gap-3 sm:gap-4 p-4 sm:p-5 pl-4 sm:pl-6">
@@ -43,8 +43,8 @@ export default function TodoItem({ todo, onUpdate, onDelete }) {
                     aria-label={todo.completed ? "Mark as incomplete" : "Mark as complete"}
                 >
                     <div className={`w-8 h-8 sm:w-7 sm:h-7 rounded-lg border-2 transition-all duration-300 flex items-center justify-center ${todo.completed
-                            ? 'bg-gradient-to-br from-green-400 to-emerald-500 border-green-500 scale-110'
-                            : 'border-gray-300 hover:border-purple-400 active:scale-110'
+                            ? 'bg-[#10B981] border-[#10B981] scale-110'
+                            : 'border-[#2A428C]/30 hover:border-[#FFEF4D] active:scale-110 bg-white'
                         }`}>
                         {todo.completed && (
                             <svg className="w-5 h-5 sm:w-5 sm:h-5 text-white animate-scaleIn" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -63,15 +63,15 @@ export default function TodoItem({ todo, onUpdate, onDelete }) {
                             onChange={(e) => setEditText(e.target.value)}
                             onKeyDown={handleKeyPress}
                             onBlur={handleUpdate}
-                            className="w-full px-3 py-2.5 sm:py-2 text-base sm:text-lg font-medium text-gray-800 bg-gray-50 border-2 border-purple-300 rounded-xl focus:outline-none focus:border-purple-500 transition-colors"
+                            className="w-full px-3 py-2.5 sm:py-2 text-base sm:text-lg font-bold text-[#2A428C] bg-[#FFEF4D]/10 border-2 border-[#FFEF4D] rounded-xl focus:outline-none transition-colors"
                             autoFocus
                         />
                     ) : (
                         <p
                             onClick={() => !todo.completed && setIsEditing(true)}
-                            className={`text-base sm:text-lg font-medium cursor-pointer transition-all duration-300 break-words ${todo.completed
+                            className={`text-base sm:text-lg font-bold cursor-pointer transition-all duration-300 break-words ${todo.completed
                                     ? 'line-through text-gray-400'
-                                    : 'text-gray-800 active:text-purple-600'
+                                    : 'text-[#2A428C] hover:text-[#2A428C]/80'
                                 }`}
                         >
                             {todo.text}
@@ -84,7 +84,7 @@ export default function TodoItem({ todo, onUpdate, onDelete }) {
                     {!isEditing && !todo.completed && (
                         <button
                             onClick={() => setIsEditing(true)}
-                            className="p-2.5 sm:p-2 text-gray-400 hover:text-purple-600 active:text-purple-700 hover:bg-purple-50 active:bg-purple-100 rounded-lg transition-all touch-manipulation min-w-[44px] min-h-[44px] sm:min-w-0 sm:min-h-0 flex items-center justify-center"
+                            className="p-2.5 sm:p-2 text-[#2A428C]/40 hover:text-[#2A428C] active:text-[#2A428C] hover:bg-[#FFEF4D]/20 active:bg-[#FFEF4D]/30 rounded-lg transition-all touch-manipulation min-w-[44px] min-h-[44px] sm:min-w-0 sm:min-h-0 flex items-center justify-center"
                             title="Edit task"
                             aria-label="Edit task"
                         >
